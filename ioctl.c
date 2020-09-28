@@ -361,6 +361,10 @@ ioctl_decode(struct tcb *tcp)
 	case 0xae:
 		return kvm_ioctl(tcp, code, arg);
 #endif
+#ifdef HAVE_LINUX_GPIO_H
+	case 0xb4:
+		return gpio_ioctl(tcp, code, arg);
+#endif
 	case 0xb7:
 		return nsfs_ioctl(tcp, code, arg);
 #ifdef HAVE_LINUX_DM_IOCTL_H
